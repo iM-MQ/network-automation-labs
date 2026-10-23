@@ -1,0 +1,46 @@
+# Lab 02: three routers in a triangle, a PC at each end, OSPF single area
+name: lab02
+
+topology:
+  groups:
+    routers:
+      kind: frr
+      image: quay.io/frrouting/frr:containerlab-10.7.1
+      # OSPF only. zebra and staticd always run as well
+      daemons:
+        - ospfd
+    pcs:
+      kind: linux
+      image: wbitt/network-multitool:3.22.2
+
+  nodes:
+    r1:
+      group: routers
+      startup-config: r1/frr.conf
+    r2:
+      group: routers
+      startup-config: r2/frr.conf
+    r3:
+      group: routers
+      startup-config: r3/frr.conf
+    pc1:
+      group: pcs
+      exec:
+        - ip link set eth1 up
+        - ip addr add 192.168.1.10/24 dev eth1
+        # Every lab network is reached through r1. eth0 stays for management
+        - ip route add 192.168.0.0/16 via 192.168.1.1 dev eth1
+    pc2:
+      group: pcs
+      exec:
+        - ip link set eth1 up
+        - ip addr add 192.168.3.10/24 dev eth1
+        - ip route add 192.168.0.0/16 via 192.168.3.1 dev eth1
+
+  links:
+    - endpoints: ["pc1:eth1", "r1:eth1"]
+    - endpoints: ["r1:eth2", "r2:eth1"]
+    - endpoints: ["r2:eth2", "r3:eth1"]
+    # The new link: a second path between r1 and r3
+    - endpoints: ["r1:eth3", "r3:eth3"]
+    - endpoints: ["r3:eth2", "pc2:eth1"]
