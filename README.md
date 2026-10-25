@@ -19,6 +19,7 @@ The routers run [FRRouting (FRR)](https://frrouting.org), an open-source routing
 | Repository | What it covers |
 |---|---|
 | [azure-landing-zone](https://github.com/iM-MQ/azure-landing-zone) | Azure networking at scale: hub-and-spoke, Azure Firewall and route tables |
+| [terraform-azure-labs](https://github.com/iM-MQ/terraform-azure-labs) | Azure networking as code: VNets, subnets and NSGs with tier segmentation |
 | [fastapi-asset-register](https://github.com/iM-MQ/fastapi-asset-register) | The testing and CI approach that Labs 04 and 05 apply to a network |
 | **network-automation-labs** | The routing fundamentals underneath both, built and tested as code |
 
