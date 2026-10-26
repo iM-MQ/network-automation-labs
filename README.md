@@ -10,7 +10,7 @@ The routers run [FRRouting (FRR)](https://frrouting.org), an open-source routing
 |---|---|---|
 | [01](lab-01-static-routing) | Static routing: three routers, default routes on the stubs, specific routes on the transit router, and the return-path problems in between | Complete ✅ |
 | [02](lab-02-ospf) | OSPF: neighbours, DR election, costs and equal-cost multipath, and rerouting around a failed link with no lost pings | Complete ✅ |
-| 03 | BGP between two sites that run OSPF inside, with route filtering | Planned ⏳ |
+| [03](lab-03-bgp) | BGP between two companies that run OSPF inside: eBGP with RFC 8212 policies, prefix-list and route-map filtering, and redistribution into OSPF | Complete ✅ |
 | 04 | Python automation: collect routing tables and back up every router's configuration | Planned ⏳ |
 | 05 | Network tests in CI: pytest checks routes and neighbours, and GitHub Actions builds and tests the whole network on every push | Planned ⏳ |
 
