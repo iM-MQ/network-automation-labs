@@ -23,7 +23,7 @@ The routers run [FRRouting (FRR)](https://frrouting.org), an open-source routing
 | [azure-landing-zone](https://github.com/iM-MQ/azure-landing-zone) | Azure networking at scale: hub-and-spoke, Azure Firewall and route tables |
 | [terraform-azure-labs](https://github.com/iM-MQ/terraform-azure-labs) | Azure networking as code: VNets, subnets and NSGs with tier segmentation |
 | [fastapi-asset-register](https://github.com/iM-MQ/fastapi-asset-register) | The testing and CI approach that Labs 04 and 05 apply to a network |
-| **network-automation-labs** | The routing fundamentals underneath both, built and tested as code |
+| **network-automation-labs** | The routing fundamentals underneath them, built and tested as code |
 
 ## Prerequisites
 
@@ -34,6 +34,7 @@ The routers run [FRRouting (FRR)](https://frrouting.org), an open-source routing
 | Containerlab | 0.81.1 | Builds the virtual networks |
 | Docker Engine, inside Debian | 28.5 | Runs the routers. Installed by Containerlab's setup script, separate from Docker Desktop |
 | VS Code + WSL extension | Latest | Editing files inside Debian |
+| Python and pytest | Python 3.13, pytest 8.3 locally and 9.1 in CI | Runs the Lab 04 scripts and the Lab 05 tests. Install with `sudo apt -y install python3-pytest` |
 
 ## First-time setup
 
@@ -71,3 +72,5 @@ Docker Desktop's WSL integration must stay **off** for this Debian environment, 
 - Image versions are pinned, so results are repeatable
 - Containerlab's working folders are excluded by `.gitignore`
 - Every README records the commands I ran, what I saw, and the issues I hit
+- Every push builds the Lab 03 network on a clean machine and tests it in GitHub Actions
+- Router configuration backups are never committed, because on real networks they can contain secrets
