@@ -41,7 +41,8 @@ def normalise(text):
             continue
         # FRR picks up the domain name from the machine it runs on, so it is not configuration
         if line.startswith("domainname "):
-            continue        lines.append(line)
+            continue
+        lines.append(line)
     return lines
 
 
