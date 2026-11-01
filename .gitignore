@@ -5,3 +5,4 @@ clab-*/
 lab-04-python-automation/backups/
 # Python's cache of imported scripts
 __pycache__/
+.pytest_cache/

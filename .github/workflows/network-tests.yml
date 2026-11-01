@@ -1,0 +1,47 @@
+# Builds the Lab 03 network from the repository and tests it, on every push and pull request
+name: Network tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# The workflow only needs to read the code
+permissions:
+  contents: read
+
+jobs:
+  lab-03-network:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install pytest
+        run: python -m pip install -r lab-05-ci/requirements.txt
+
+      # The same Containerlab version as on my computer
+      - name: Install Containerlab
+        run: bash -c "$(curl -sL https://get.containerlab.dev)" -- -v 0.81.1
+
+      - name: Build the Lab 03 network
+        run: sudo containerlab deploy -t lab-03-bgp/lab03.clab.yml
+
+      - name: Run the network tests
+        run: python -m pytest -v lab-05-ci
+
+      - name: Show every router's state if a test failed
+        if: failure()
+        run: python lab-04-python-automation/collect.py
+
+      - name: Destroy the network
+        if: always()
+        run: sudo containerlab destroy -t lab-03-bgp/lab03.clab.yml --cleanup
