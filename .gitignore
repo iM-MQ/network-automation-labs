@@ -1,3 +1,7 @@
 # Containerlab working folders and backups
 clab-*/
 *.bak
+# Lab 04 output: router configurations can contain secrets on real networks
+lab-04-python-automation/backups/
+# Python's cache of imported scripts
+__pycache__/
