@@ -39,7 +39,9 @@ def normalise(text):
             continue
         if line.startswith(("Building configuration", "Current configuration")):
             continue
-        lines.append(line)
+        # FRR picks up the domain name from the machine it runs on, so it is not configuration
+        if line.startswith("domainname "):
+            continue        lines.append(line)
     return lines
 
 
