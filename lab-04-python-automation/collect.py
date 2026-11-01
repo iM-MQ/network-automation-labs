@@ -49,7 +49,7 @@ def ospf_neighbours(container):
     found = []
     for router_id, entries in data.get("neighbors", {}).items():
         for entry in entries:
-                        # FRR names the interface with its address, e.g. "eth2:10.0.12.1"
+                                    # FRR names the interface with its address, e.g. "eth2:10.0.12.1"
             interface = entry.get("ifaceName", "?").split(":")[0]
             found.append((router_id, interface, entry.get("converged", "?")))
     return found
