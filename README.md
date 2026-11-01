@@ -1,5 +1,7 @@
 # Network Automation Labs
 
+[![Network tests](https://github.com/iM-MQ/network-automation-labs/actions/workflows/network-tests.yml/badge.svg)](https://github.com/iM-MQ/network-automation-labs/actions/workflows/network-tests.yml)
+
 Refreshing my CCNA routing skills hands-on, then automating and testing the network the way I now test code. Each lab builds a virtual network of real routers with [Containerlab](https://containerlab.dev), configures it, breaks it on purpose, and records what I saw.
 
 The routers run [FRRouting (FRR)](https://frrouting.org), an open-source routing suite whose command line is very close to Cisco IOS (`configure terminal`, `ip route`, `show ip route`). Every topology and router configuration is a file in this repository, so any lab can be rebuilt from scratch with one command.
@@ -12,7 +14,7 @@ The routers run [FRRouting (FRR)](https://frrouting.org), an open-source routing
 | [02](lab-02-ospf) | OSPF: neighbours, DR election, costs and equal-cost multipath, and rerouting around a failed link with no lost pings | Complete ✅ |
 | [03](lab-03-bgp) | BGP between two companies that run OSPF inside: eBGP with RFC 8212 policies, prefix-list and route-map filtering, and redistribution into OSPF | Complete ✅ |
 | [04](lab-04-python-automation) | Python automation: a health report built from FRR's JSON output, configuration backups, and drift detection against the repository, with exit codes ready for CI | Complete ✅ |
-| 05 | Network tests in CI: pytest checks routes and neighbours, and GitHub Actions builds and tests the whole network on every push | Planned ⏳ |
+| [05](lab-05-ci) | Network tests in CI: pytest checks the routes, neighbours, filter, reachability and configuration drift, and GitHub Actions builds the whole network from the repository and tests it on every push | Complete ✅ |
 
 ## Where this fits
 
